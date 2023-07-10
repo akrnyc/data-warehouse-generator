@@ -19,13 +19,28 @@ class Manufacturing:
     def __str__(self):
         return f"size: {self.size}, parts: {self.num_parts}, roles: {self.role_types}"
 
-    def vendors(self):
-        ids = []
-        names = []
+    def vendors(self, size=10):
+        if size < 1:
+            return f'ValueError: vendor.size must be greater than 1'
+        
+        return pd.DataFrame({'id': random.sample(range(1000, 9999), size),
+                             'name': [fake.company() for x in range(size)],
+                             'street': [fake.address().split('\n')[0] for x in range(size)],
+                             'city': [fake.address().split('\n')[1].split(',')[0] for x in range(size)],
+                             'state': [fake.address().split('\n')[1].split(', ')[1].split(' ')[0] for x in range(size)],
+                             'zipcode': [int(fake.address().split('\n')[1].split(', ')[1].split(' ')[1]) for x in range(size)]})
 
-        pass
+    def parts(self):
+        part_names = 
+        return pd.DataFrame({'id': random.sample(range(1000, 9999), self.num_parts),
+                             'vendor_id': random.choice(self.vendors.ids),
+                             'name': ,
+                             'is_customizable': bool(random.getrandbits(1)),
+                             'unit_cost': random.sample(range(0.001, 0.25), self.num_parts)})
 
-    def distributors(self):
+    def distributors(self, size=10):
+        if size < 1:
+            return f'ValueError: vendor.size must be greater than 1'
         pass
     
     def employee_types(self):
