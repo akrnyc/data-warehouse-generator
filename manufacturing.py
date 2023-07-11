@@ -57,7 +57,7 @@ class Manufacturing:
                              'role_type': self.role_types
                              })
 
-    def employees(self):
+    def employees(self, role_weights=None):
         titles = {'Designer': 0.05, 
                   'Engineer': 0.4, 
                   'QA': 0.05, 
