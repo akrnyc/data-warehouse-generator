@@ -6,7 +6,6 @@ fake = Faker()
 Faker.seed(47)
 
 class Manufacturing:
-
     def __init__(self):
         self.role_types = ['full_time', 
                            'part_time', 
