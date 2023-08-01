@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import random
+import barnum
 from faker import Faker
 fake = Faker()
 Faker.seed(47)
@@ -21,12 +22,14 @@ class Manufacturing:
         if size < 1:
             return f'ValueError: vendor.size must be greater than 1'
         
+        addresses = [barnum.create_city_state_zip() for x in range(size)]
+        
         return pd.DataFrame({'id': random.sample(range(1000, 9999), size),
                              'name': [fake.company() for x in range(size)],
                              'street': [fake.address().split('\n')[0] for x in range(size)],
-                             'city': [fake.address().split('\n')[1].split(',')[0] for x in range(size)],
-                             'state': [fake.address().split('\n')[1].split(', ')[1].split(' ')[0] for x in range(size)],
-                             'zipcode': [int(fake.address().split('\n')[1].split(', ')[1].split(' ')[1]) for x in range(size)]
+                             'city': [x[1] for x in addresses],
+                             'state': [x[2] for x in addresses],
+                             'zipcode': [int(x[0]) for x in addresses]
                              })
 
     def parts(self, size=10):
@@ -44,12 +47,14 @@ class Manufacturing:
         if size < 1:
             return f'ValueError: vendor.size must be greater than 1'
         
+        addresses = [barnum.create_city_state_zip() for x in range(size)]
+        
         return pd.DataFrame({'id': random.sample(range(1000, 9999), size),
                              'name': [fake.company() for x in range(size)],
                              'street': [fake.address().split('\n')[0] for x in range(size)],
-                             'city': [fake.address().split('\n')[1].split(',')[0] for x in range(size)],
-                             'state': [fake.address().split('\n')[1].split(', ')[1].split(' ')[0] for x in range(size)],
-                             'zipcode': [int(fake.address().split('\n')[1].split(', ')[1].split(' ')[1]) for x in range(size)]
+                             'city': [x[1] for x in addresses],
+                             'state': [x[2] for x in addresses],
+                             'zipcode': [int(x[0]) for x in addresses]
                              })
     
     def employee_types(self):
