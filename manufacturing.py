@@ -73,7 +73,7 @@ class Manufacturing:
         role_ids = (self.employee_types)['id'].unique().tolist()
         pass
 
-    def products(self):
+    def products(self, size=10):
         pass
 
     def delivery_services(self):
